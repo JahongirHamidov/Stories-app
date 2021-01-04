@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
 const morgan = require('morgan')
-const dbConnection = require('./config/db')
+const connectDB = require('./config/db')
 const exphbs = require('express-handlebars')
 const passport = require('passport')
 const session = require('express-session')
@@ -15,7 +15,7 @@ dotenv.config({path:'./config/config.env'})
 // Passport config
 require('./config/passport')(passport)
 
-dbConnection()
+connectDB()
 
 //logging
 if(process.env.NODE_ENV==='development'){
