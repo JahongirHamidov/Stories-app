@@ -10,6 +10,16 @@ module.exports = function(passport){
         callbackURL: '/auth/google/callback'
     },
     async(accessToken, refreshToken, profile, done )=>{
-        console.log(profile)
+        
     }
-    ))}
+    ))
+    passport.serializeUser((user, done) => {
+        done(null, user.id)
+      })
+      
+    passport.deserializeUser((id, done) => {
+        User.findById(id, (err, user) => done(err, user) )
+      })
+
+}
+
